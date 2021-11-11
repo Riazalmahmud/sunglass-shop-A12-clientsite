@@ -11,31 +11,46 @@ import MyOrder from "./Pages/MyOrder/MyOrder";
 import Navigation from "./Pages/Navigation/Navigation";
 import Footer from "./Pages/Footer/Footer"
 import NotFound from "./Pages/NotFound/NotFound";
+import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
+import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
+import Register from "./Pages/Login/Register/Register";
+import AuthProvider from "./contexts/AuthProvider/AuthProvider";
+
+
+
 function App() {
   return (
     <div className="App">
-      <Router>
-        <Navigation></Navigation>
-        <Switch>
-          <Route exact path="/">
-            <Home></Home>
-          </Route>
-          <Route path="/home">
-            <Home></Home>
-          </Route>
-          <Route path="/login">
-            <Login></Login>
-          </Route>
+      <AuthProvider>
+        <Router>
+          <Navigation></Navigation>
+          <Switch>
+            <Route exact path="/">
+              <Home></Home>
+            </Route>
+            <Route path="/home">
+              <Home></Home>
+            </Route>
+            <Route path="/login">
+              <Login></Login>
+            </Route>
+            <Route path="/register">
+              <Register></Register>
+            </Route>
 
-          <Route path="/MyOrder">
-            <MyOrder></MyOrder>
-          </Route>
-          <Route exact path="*">
-            <NotFound></NotFound>
-          </Route>
-        </Switch>
-        <Footer></Footer>
-      </Router>
+            <PrivateRoute path="/MyOrder">
+              <MyOrder></MyOrder>
+            </PrivateRoute>
+            <PrivateRoute path="/Dashboard">
+              <Dashboard></Dashboard>
+            </PrivateRoute>
+            <Route exact path="*">
+              <NotFound></NotFound>
+            </Route>
+          </Switch>
+          <Footer></Footer>
+        </Router>
+      </AuthProvider>
     </div>
   );
 }

@@ -20,7 +20,7 @@ const CollectionCategoris = () => {
                     collections !== undefined &&
                     collections.slice(0, 3).map(collection =>
                         <CollectionCategory
-                            key={CollectionCategory.id}
+                            key={collection.id}
                             collection={collection}
 
                         ></CollectionCategory>)

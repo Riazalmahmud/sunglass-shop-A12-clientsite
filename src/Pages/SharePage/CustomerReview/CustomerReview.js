@@ -3,7 +3,6 @@ import { Card } from 'react-bootstrap';
 import './CustomerReview.css';
 const CustomerReview = (props) => {
     const { img, rating, name } = props.review
-    console.log(props.review)
     return (
         <div>
             <Card.Body className="review-design">

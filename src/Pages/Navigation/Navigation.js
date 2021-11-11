@@ -4,10 +4,10 @@ import Box from '@mui/material/Box';
 
 import { Link, NavLink } from 'react-router-dom';
 import './Navigation.css';
-import useFirebase from '../../Hooks/useFirebase';
-
+import useAuth from '../../Hooks/useAuth';
 const Navigation = () => {
-    const { user, logOut, email } = useFirebase();
+    const { user, logOut } = useAuth();
+
     return (
         <div>
             <Navbar className="bg-dark text-white">
@@ -16,10 +16,14 @@ const Navigation = () => {
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end text-white">
                         <Navbar.Text>
+
+                            <Nav.Link as={Link} to="/MyOrder">My Order</Nav.Link>
+                        </Navbar.Text>
+                        <Navbar.Text>
                             {
                                 user?.email ?
                                     <Box>
-                                        <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/dashboard">
+                                        <NavLink style={{ textDecoration: 'none', color: 'white' }} to="/Dashboard">
                                             <Button color="inherit">Dashboard</Button>
                                         </NavLink>
                                         <Button onClick={logOut} color="inherit">Logout</Button>
@@ -30,10 +34,7 @@ const Navigation = () => {
                                     </NavLink>
                             }
                         </Navbar.Text>
-                        <Navbar.Text>
 
-                            <Nav.Link as={Link} to="/MyOrder">My Order</Nav.Link>
-                        </Navbar.Text>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

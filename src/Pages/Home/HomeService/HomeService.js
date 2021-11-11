@@ -3,7 +3,7 @@ import { Card, Button } from 'react-bootstrap';
 import './HomeService.css'
 const HomeService = (props) => {
     const { img, name, seller } = props.service
-    console.log(props.service)
+
     return (
         <div>
             <div className="Container">

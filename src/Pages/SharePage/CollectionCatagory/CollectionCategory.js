@@ -4,7 +4,7 @@ import './CollectionCategores.css';
 import { Button } from 'react-bootstrap';
 const CollectionCategory = (props) => {
     const { img, name } = props.collection;
-    console.log(props.collection)
+
     return (
         <div>
             <div className="container">
