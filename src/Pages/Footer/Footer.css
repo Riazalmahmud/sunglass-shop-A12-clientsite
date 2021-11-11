@@ -1,0 +1,15 @@
+
+
+
+.footer-desing {
+    text-align: left;
+    padding-left: 4rem;
+    padding-right: 4rem;
+}
+.footer-desing a{
+    text-decoration: none;
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    line-height: 2rem;
+}
