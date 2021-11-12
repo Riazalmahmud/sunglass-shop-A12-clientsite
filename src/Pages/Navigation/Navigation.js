@@ -20,6 +20,10 @@ const Navigation = () => {
                             <Nav.Link as={Link} to="/MyOrder">My Order</Nav.Link>
                         </Navbar.Text>
                         <Navbar.Text>
+
+                            <Nav.Link as={Link} to="/AddAProduct">Add A Product</Nav.Link>
+                        </Navbar.Text>
+                        <Navbar.Text>
                             {
                                 user?.email ?
                                     <Box>

@@ -7,7 +7,7 @@ const HomeServices = () => {
 
 
     useEffect(() => {
-        fetch('./fakeDb.json')
+        fetch('http://localhost:5000/products')
             .then(res => res.json())
             .then(data => setSerivics(data))
     }, [])

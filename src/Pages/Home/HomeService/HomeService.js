@@ -11,7 +11,7 @@ const HomeService = (props) => {
                 <Card className="service-design">
                     <img src={img} alt="" />
                     <Card.Body>
-                        <Card.Title>{name.slice(0, 100)}</Card.Title>
+                        {/* <Card.Title>{name.slice(0, 100)}</Card.Title> */}
                         <Card.Title> barnd {seller}</Card.Title>
                         <Button variant="light">buy now</Button>
                     </Card.Body>

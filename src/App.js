@@ -15,6 +15,8 @@ import Dashboard from "./Pages/Dashboard/Dashboard/Dashboard";
 import PrivateRoute from "./Pages/PrivateRoute/PrivateRoute";
 import Register from "./Pages/Login/Register/Register";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
+import AddAProduct from "./Pages/Dashboard/AddAProduct/AddAProduct";
+import ManageAllOrders from "./Pages/Dashboard/ManageAllOrders/ManageAllOrders";
 
 
 
@@ -44,6 +46,12 @@ function App() {
             <PrivateRoute path="/Dashboard">
               <Dashboard></Dashboard>
             </PrivateRoute>
+            <Route path="/AddAProduct">
+              <AddAProduct></AddAProduct>
+            </Route>
+            <Route path="/ManageAllOrders">
+              <ManageAllOrders></ManageAllOrders>
+            </Route>
             <Route exact path="*">
               <NotFound></NotFound>
             </Route>

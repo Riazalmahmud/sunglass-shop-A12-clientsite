@@ -2,18 +2,19 @@ import React, { useState } from 'react';
 
 import Typography from '@mui/material/Typography';
 import googleLogo from '../../image/icon/search.png'
-import { TextField } from '@mui/material';
+import { Alert, CircularProgress, TextField } from '@mui/material';
 import Button from '@mui/material/Button';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation, useHistory } from 'react-router-dom';
 import useAuth from '../../Hooks/useAuth';
-
+import './Login.css'
 
 
 const Login = () => {
     const [loginData, setLoginData] = useState({})
-    const { signInWithGoogle } = useAuth();
+    const { signInWithGoogle, loginUser, user, isLoading } = useAuth();
 
-
+    const location = useLocation();
+    const history = useHistory();
 
     const handleOnChange = e => {
         const field = e.target.name;
@@ -23,7 +24,11 @@ const Login = () => {
         setLoginData(newLoginData);
     }
     const handleLoginSubmit = e => {
+        loginUser(loginData.email, loginData.password, location, history);
         e.preventDefault();
+    }
+    const handleGoogleSignIn = () => {
+        signInWithGoogle(location, history)
     }
     return (
         <div>
@@ -55,7 +60,9 @@ const Login = () => {
                             <Button variant="text">New User? Please Register</Button>
                         </NavLink>
                     </form>
-                    <button className="primar-custom-color text-white fw-bold px-5 "> <img src={googleLogo} alt="" onClick={signInWithGoogle} />  signIn with google</button>
+                    <button className="primar-custom-color text-white fw-bold px-5 login-design"> <img src={googleLogo} alt="" onClick={handleGoogleSignIn} />  signIn with google</button>
+                    {isLoading && <CircularProgress />}
+                    {user?.email && <Alert severity="success">logIn success !</Alert>}
                 </div>
 
             </div>

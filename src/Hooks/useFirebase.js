@@ -6,10 +6,12 @@ firebaseInitialization();
 const useFirebase = () => {
     const [user, setUser] = useState();
     const [isLoading, setIsLoading] = useState(true);
+    const [authError, setAuthError] = useState('');
+
     const Googleprovider = new GoogleAuthProvider();
     const auth = getAuth();
 
-    const registerUser = (email, password) => {
+    const registerUser = (email, password, location, history) => {
         setIsLoading(true);
         createUserWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
@@ -18,8 +20,7 @@ const useFirebase = () => {
                 // ...
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                setAuthError(error.message);
                 // ..
             })
             .finally(() => setIsLoading(false));
@@ -27,17 +28,19 @@ const useFirebase = () => {
 
 
 
-    const loginUser = (email, password) => {
+    const loginUser = (email, password, location, history) => {
         setIsLoading(true);
         signInWithEmailAndPassword(auth, email, password)
             .then((userCredential) => {
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
+                setAuthError('');
                 // Signed in 
                 const user = userCredential.user;
                 // ...
             })
             .catch((error) => {
-                const errorCode = error.code;
-                const errorMessage = error.message;
+                setAuthError(error.message);
             })
             .finally(() => setIsLoading(false));
     }
@@ -46,13 +49,17 @@ const useFirebase = () => {
 
 
 
-    const signInWithGoogle = () => {
+    const signInWithGoogle = (location, history) => {
         setIsLoading(true);
         signInWithPopup(auth, Googleprovider)
             .then((result) => {
-                setUser(user)
-            }).catch((error) => {
 
+                setUser(user)
+                const destination = location?.state?.from || '/';
+                history.replace(destination);
+
+            }).catch((error) => {
+                setAuthError(error.message);
             })
             .finally(() => setIsLoading(false));
     }
