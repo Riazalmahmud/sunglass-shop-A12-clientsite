@@ -8,11 +8,11 @@ const CollectionCategory = (props) => {
     return (
         <div>
             <div className="container">
-                <Card className="collection">
+                <Card className="collection my-3 py-3">
                     <img src={img} alt="" />
                     <Card.Body>
                         <Card.Title>{name.slice(0, 18)}</Card.Title>
-                        <Button variant="light">buy now</Button>
+
                     </Card.Body>
                 </Card>
             </div>

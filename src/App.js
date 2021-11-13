@@ -17,6 +17,7 @@ import Register from "./Pages/Login/Register/Register";
 import AuthProvider from "./contexts/AuthProvider/AuthProvider";
 import AddAProduct from "./Pages/Dashboard/AddAProduct/AddAProduct";
 import ManageAllOrders from "./Pages/Dashboard/ManageAllOrders/ManageAllOrders";
+import MyOrders from "./Pages/Dashboard/MyOrders/MyOrders";
 
 
 
@@ -45,6 +46,9 @@ function App() {
             </PrivateRoute>
             <PrivateRoute path="/Dashboard">
               <Dashboard></Dashboard>
+            </PrivateRoute>
+            <PrivateRoute path="/MyOrders">
+              <MyOrders></MyOrders>
             </PrivateRoute>
             <Route path="/AddAProduct">
               <AddAProduct></AddAProduct>

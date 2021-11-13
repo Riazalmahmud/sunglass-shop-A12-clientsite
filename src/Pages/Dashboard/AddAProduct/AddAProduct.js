@@ -6,7 +6,7 @@ import { Alert } from '@mui/material';
 const AddAProduct = () => {
     const { register, handleSubmit } = useForm();
     const onSubmit = data => {
-        axios.post("http://localhost:5000/products", data)
+        axios.post("https://hidden-mesa-07077.herokuapp.com/products", data)
             .then(res => {
                 if (res.data.insertedId) {
                     <Alert severity="success"> successfully posted !</Alert>

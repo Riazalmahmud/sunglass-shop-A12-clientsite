@@ -4,3 +4,11 @@
 header.MuiPaper-root.MuiPaper-elevation.MuiPaper-elevation4.MuiAppBar-root.MuiAppBar-colorPrimary.MuiAppBar-positionFixed.mui-fixed.css-zxtyt4-MuiPaper-root-MuiAppBar-root{
     background-color: #191a1a;
 }
+
+.dashboard-nav a {
+    color: #0d6efd;
+    text-decoration: none;
+    display: flex;
+    margin-left: 0px;
+    flex-direction: row;
+}

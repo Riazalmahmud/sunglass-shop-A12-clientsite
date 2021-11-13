@@ -7,7 +7,7 @@ const HomeServices = () => {
 
 
     useEffect(() => {
-        fetch('http://localhost:5000/products')
+        fetch('https://hidden-mesa-07077.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setSerivics(data))
     }, [])

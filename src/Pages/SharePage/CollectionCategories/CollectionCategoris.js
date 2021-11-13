@@ -6,7 +6,7 @@ const CollectionCategoris = () => {
     const [collections, setCollection] = useState([])
 
     useEffect(() => {
-        fetch('./fakeDb.json')
+        fetch('https://hidden-mesa-07077.herokuapp.com/products')
             .then(res => res.json())
             .then(data => setCollection(data))
     }, [])

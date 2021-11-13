@@ -15,13 +15,31 @@ import MailIcon from '@mui/icons-material/Mail';
 import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import './Dashboard.css'
-const drawerWidth = 240;
+import './Dashboard.css';
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link,
+    useParams,
+    useRouteMatch
+} from "react-router-dom";
+import { Button } from '@mui/material';
+import Home from '../../Home/Home';
+import MakeAdmin from '../MakeAdmin/MakeAdmin';
+import AddAProduct from '../AddAProduct/AddAProduct';
+import ManageAllOrders from '../ManageAllOrders/ManageAllOrders';
+import Pay from '../Pay/Pay';
+import Review from '../Review/Review';
+import useAuth from '../../../Hooks/useAuth';
+import MyOrders from '../MyOrders/MyOrders';
+const drawerWidth = 200;
 
 function Dashboard(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-
+    let { path, url } = useRouteMatch();
+    const { admin, logOut } = useAuth();
     const handleDashboardToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -31,26 +49,19 @@ function Dashboard(props) {
             <Toolbar />
             <Divider />
             <List>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
+                <ul className="dashboard-nav">
+                    <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link>
+                    <Link to={`${url}/MyOrders`}><Button color="inherit">My Orders</Button></Link>
+                    <Button onClick={logOut} color="inherit">Logout</Button>
+                    <Link to={`${url}/AddAProduct`}><Button color="inherit">Add A Product</Button></Link>
+                    <Link to={`${url}/MakeAdmin`}><Button color="inherit">Make Admin</Button></Link>
+                    <Link to={`${url}/ManageAllOrders`}><Button color="inherit">Manage AllOrders</Button></Link>
+                    <Link to={`${url}/Pay`}><Button color="inherit">Pay</Button></Link>
+                    <Link to={`${url}/Review`}><Button color="inherit">Review</Button></Link>
+                </ul>
             </List>
             <Divider />
-            <List>
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem button key={text}>
-                        <ListItemIcon>
-                            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                        </ListItemIcon>
-                        <ListItemText primary={text} />
-                    </ListItem>
-                ))}
-            </List>
+
         </div>
     );
 
@@ -118,9 +129,28 @@ function Dashboard(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
             >
                 <Toolbar />
-                <Typography paragraph>
-                    <h1>Contend here </h1>
-                </Typography>
+                {/* nested route here  */}
+                <Switch>
+
+                    <Route path={`${path}/MakeAdmin`}>
+                        <MakeAdmin></MakeAdmin>
+                    </Route>
+                    <Route path={`${path}/MyOrders`}>
+                        <MyOrders></MyOrders>
+                    </Route>
+                    <Route path={`${path}/AddAProduct`}>
+                        <AddAProduct></AddAProduct>
+                    </Route>
+                    <Route path={`${path}/ManageAllOrders`}>
+                        <ManageAllOrders></ManageAllOrders>
+                    </Route>
+                    <Route path={`${path}/Pay`}>
+                        <Pay></Pay>
+                    </Route>
+                    <Route path={`${path}/Review`}>
+                        <Review></Review>
+                    </Route>
+                </Switch>
 
             </Box>
         </Box>
