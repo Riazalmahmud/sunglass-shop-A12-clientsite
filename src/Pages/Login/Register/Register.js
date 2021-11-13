@@ -11,7 +11,7 @@ import useAuth from '../../../Hooks/useAuth';
 
 const Register = () => {
     const [loginData, setLoginData] = useState({})
-    const { registerUser, isLoading, user } = useAuth();
+    const { registerUser, isLoading, user, authError } = useAuth();
     console.log(user)
     const handleOnBlur = e => {
         const field = e.target.name;
@@ -77,6 +77,7 @@ const Register = () => {
                     </form>}
                     {isLoading && <CircularProgress />}
                     {user?.email && <Alert severity="success">User Created successfully!</Alert>}
+                    {authError && <Alert severity="error">{authError}</Alert>}
                 </div>
 
             </div>
